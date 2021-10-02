@@ -47,7 +47,8 @@ typedef struct
 #define UART_DMAT	7
 #define UART_DMAR	6
 
-
+#define ENABLE	1
+#define DISABLE	0
 
 
 
