@@ -15,6 +15,10 @@ typedef struct
 }UART_type;
 #define UART ((UART_type*)(0x40013800))
 
+#define UART2 ((UART_type*)(0x40004400))
+
+
+
 /* USART_CR1 */
 #define UART_UE		13
 #define UART_M		12

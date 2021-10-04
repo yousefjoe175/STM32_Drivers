@@ -105,6 +105,23 @@ void MUART_voidTransmitMultipleDataSynch(u8 *ptr_u8DataBuffer, u16 copy_u16Numbe
 	CLR_BIT(UART->CR1,UART_TE);
 }
 
+void UART_voidSendNumberSynch(u32 Copy_u32Number){
+	u8 SentChar;
+	u32 y = 1;
+	if(Copy_u32Number == 0){
+		MUART_voidTransmitSynch('0');
+	}
+	while(Copy_u32Number/(10*y) !=0){
+		y*=10;
+	}
+	while(Copy_u32Number !=0){
+		SentChar = (Copy_u32Number/y)+'0';
+		MUART_voidTransmitSynch(SentChar);
+		Copy_u32Number %=y;
+		y/=10;
+	}
+}
+
 #if DMA == ENABLE
 //call DMAMemoryToPeripheral and set DMA in CR2 and wait for callback if exits
 void MUART_voidTransmitAsynchDMA(u8 *ptr_u8DataBuffer, u16 copy_u16NumberOfData, void(*ptr)(void)){
